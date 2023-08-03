@@ -24,6 +24,7 @@ const TrendingSection = () => {
             {
                 games.map(({id,image,name,price,slug})=>(
                     <GameCard 
+                        key={id}
                         id={id}
                         name={name}
                         image={image}
