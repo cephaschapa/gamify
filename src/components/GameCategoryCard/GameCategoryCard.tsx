@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import gameCategoryClassNames from "./GameCategoryCardClassNames";
+import gameCategoryClassNames from "./gameCategoryCardClassNames";
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -37,7 +37,7 @@ const GameCategoryCard:FC<GameCategoryCardProps> = ({
             {categoryName}
         </h3>
         <Image 
-            src={categoryImage}
+            src="/images/arrow.svg"
             alt="view"
             width={20}
             height={20}

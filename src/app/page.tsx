@@ -1,7 +1,10 @@
-import HeroSection from "@/components/HeroSection/HeroSection";
-import TrendingSection from "@/components/TrendingSection/TrendingSection";
 import Image from "next/image";
 import Link from "next/link";
+import HeroSection from "@/components/HeroSection/HeroSection";
+import TrendingSection from "@/components/TrendingSection/TrendingSection";
+import { categories, featuredGame } from "@/data/games";
+import { featuredClassNames, sectionClassNames, styles } from "./pageClassNames";
+import GameCategoryCard from "@/components/GameCategoryCard/GameCategoryCard";
 
 export default function Home() {
   return (
@@ -34,32 +37,32 @@ export default function Home() {
           </Link>
         </div>
       </section>
+      <section
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGxheSUyMHN0YXRpb258ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+        }}
+
+        className={styles.categorySection}
+      >
+        <div className={styles.categoryContent}>
+          <h2 className={styles.categoryHeading}>Categories</h2>
+          <p className={styles.categorySubHeading}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta optio eligendi qui possimus repudiandae reiciendis, quo labore a error numquam! Sequi rem, optio dolorum cupiditate reiciendis voluptatum quos molestias nihil.
+          </p>
+          <div className="flex flex-wrap">
+            {
+              categories.map(({id, image, name, slug})=>(
+                <GameCategoryCard
+                  key={id} 
+                  categoryImage={image}
+                  categoryName={name}
+                  slug={slug}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </section>
     </>
   )
 }
-
-const featuredGame = {
-  name: "Eternal Domination",
-  description:
-    "Immerse yourself in a vast fantasy realm where epic battles and strategic conquests await. In 'Eternal Domination,' you'll lead armies, forge alliances, and build your empire from scratch. Command powerful heroes, employ cunning tactics, and unleash your might on the battlefield. Will you rise as the supreme ruler or fall beneath the weight of your ambitions? Join the fray and claim your destiny in this thrilling strategy game.",
-  slug: "eternal-domination",
-  image: "/images/trending.jpeg",
-};
-
-const featuredClassNames = {
-  gameName: "font-bold text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-8",
-  gameDetails: "max-w-screen-md text-sm mb-8 md:mb-12",
-  gameImage: "h-72 md:h-96 lg:h-112 w-full object-cover rounded-lg",
-}
-
-const sectionClassNames = {
-  section: "px-6 sm:px-12 md:px-20 lg:px-36 mx-auto py-8 text-white",
-  trending: "flex flex-col sm:flex-row items-center justify-between mb-8",
-  trendingTitle: "font-bold text-3xl sm:mr-4",
-  trendingButton:
-    "mt-4 sm:mt-0 px-6 py-2 rounded-md bg-primary hover:bg-primary-dark",
-  latestButton:
-    "mt-4 sm:mt-0 px-6 py-2 rounded-md bg-primary-gradient border-2 border-primary-dark",
-  featured: "pb-24 px-6 sm:px-12 md:px-20 lg:px-36 text-white",
-  featuredContent: "mx-auto max-w-screen-xl",
-};
