@@ -2,9 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection/HeroSection";
 import TrendingSection from "@/components/TrendingSection/TrendingSection";
-import { categories, featuredGame } from "@/data/games";
-import { featuredClassNames, sectionClassNames, styles } from "./pageClassNames";
+import { categories, featuredGame, games } from "@/data/games";
+import { featuredClassNames, recentGamesClasses, sectionClassNames, styles } from "./pageClassNames";
 import GameCategoryCard from "@/components/GameCategoryCard/GameCategoryCard";
+import GameCard from "@/components/GameCard/GameCard";
+import NewsLater from "@/components/NewsLetter/NewsLetter";
 
 export default function Home() {
   return (
@@ -63,6 +65,33 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className={recentGamesClasses.section}>
+          <h2 className={recentGamesClasses.heading}>Our Recent Games</h2>
+          <p className={recentGamesClasses.subHeading}>
+            Stay Ahead of the curve with our games.
+          </p>
+          <div className="flex rounded gap-8 flex-wrap py-10">
+            {
+              games.map(({id,image,name,price,slug})=>(
+                <GameCard
+                  key={id} 
+                  id={id}
+                  image={image}
+                  name={name}
+                  price={price}
+                  slug={slug}
+                />
+              ))
+            }
+          </div>
+          <Link 
+            href="/games"
+            className={sectionClassNames.latestButton}
+          >
+            See All
+          </Link>
+      </section>
+      <NewsLater />
     </>
   )
 }
